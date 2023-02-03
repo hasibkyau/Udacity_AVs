@@ -3,7 +3,7 @@ pyvenv.cfg
 __pycache__/
 myData
 beta_simulator_windows
-dataset1/
+dataset/
 dataset3/
 media
 model2.h5

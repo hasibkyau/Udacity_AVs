@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from utlis import *
 
-path = 'myData'
+path = 'Dataset1'
 data = importDataInfo(path)
 # data = pd.DataFrame(data)
 # print(len(data))
