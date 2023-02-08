@@ -36,11 +36,17 @@ def telemetry(sid, data):
     image = np.asarray(image)
     image = preProcess(image)
     image = np.array([image])
-    drivingLog = float(model.predict(image))
+
+    drivingLog = (model.predict(image))
+    steering = drivingLog[0][0][0]
+    throttle = drivingLog[1][0][0]
+    # throttle = float(throttle) + 0.1
+
     throttle = 1.0 - speed / maxSpeed
-    print(drivingLog)
+    print(steering)
+    print(throttle)
     # print(f'{steering}, {throttle}, {speed}')
-    sendControl(0, 1)
+    sendControl(float(steering), throttle)
 
 
 @sio.on('connect')
@@ -57,7 +63,7 @@ def sendControl(steering, throttle):
 
 
 if __name__ == '__main__':
-    model = load_model('Behavior.h5')
+    model = load_model('Model3.h5')
     app = socketio.Middleware(sio, app)
     ### LISTEN TO PORT 4567
     eventlet.wsgi.server(eventlet.listen(('', 4567)), app)
